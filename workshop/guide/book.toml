@@ -1,9 +1,9 @@
 [book]
-authors = ["Daan van Berkel"]
+authors = ["Geert Mulders", "Daan van Berkel"]
 language = "en"
 multilingual = false
 src = "src"
-title = "Workshop"
+title = "50 shades of FizzBuzz"
 
 [output.html]
 mathjax-support = true

@@ -3,5 +3,5 @@ The sources for this guide, its examples and references can be found at [the pro
 
 It also holds [a downloadable release][release]; a package of all aforementioned items. 
 
-[repo]: https://github.com/fifth-postulate/workshop-template
-[release]: https://github.com/fifth-postulate/workshop-template/releases
+[repo]: https://github.com/fifth-postulate/fizzbuzz
+[release]: https://github.com/fifth-postulate/fizzbuzz/releases
