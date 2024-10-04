@@ -1,7 +1,9 @@
 package nl.fifthpostulate.standard
 
-class FizzBuzz {
-    fun of(n: Int): String {
+import nl.fifthpostulate.FizzBuzz
+
+class Standard: FizzBuzz {
+    override fun of(n: Int): String {
         if (n % 15 == 0) {
             return "FizzBuzz"
         }

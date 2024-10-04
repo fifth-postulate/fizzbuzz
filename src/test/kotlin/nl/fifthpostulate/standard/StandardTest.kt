@@ -1,5 +1,6 @@
 package nl.fifthpostulate.standard
 
+import nl.fifthpostulate.FizzBuzz
 import org.junit.jupiter.api.BeforeEach
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -9,7 +10,7 @@ class StandardTest {
 
     @BeforeEach
     fun createFizzBuzz() {
-        fizzbuzz = FizzBuzz()
+        fizzbuzz = Standard()
     }
 
     @Test
