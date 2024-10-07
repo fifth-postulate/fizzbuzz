@@ -2,18 +2,10 @@ package nl.fifthpostulate
 
 import nl.fifthpostulate.radix.Radix
 import nl.fifthpostulate.standard.Standard
-import org.junit.jupiter.api.BeforeEach
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
 class FizzBuzzTest {
-    lateinit var fizzbuzz : FizzBuzz
-
-    @BeforeEach
-    fun createFizzBuzz() {
-        fizzbuzz = Radix()
-    }
-
     @Test
     fun verify_fizzbuzz() {
         listOf(Standard(), Radix()).forEach { subject ->
@@ -26,7 +18,6 @@ class FizzBuzzTest {
                 verify().fizzbuzzOf(10).shouldEqual("Buzz")
                 verify().fizzbuzzOf(15).shouldEqual("FizzBuzz")
             }
-
         }
     }
 }
