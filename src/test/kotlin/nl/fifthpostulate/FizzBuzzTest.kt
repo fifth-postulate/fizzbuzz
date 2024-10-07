@@ -1,6 +1,7 @@
 package nl.fifthpostulate
 
 import nl.fifthpostulate.radix.Radix
+import nl.fifthpostulate.radix.UnrollWithWhen
 import nl.fifthpostulate.standard.Standard
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -8,7 +9,7 @@ import kotlin.test.assertEquals
 class FizzBuzzTest {
     @Test
     fun verify_fizzbuzz() {
-        listOf(Standard(), Radix()).forEach { subject ->
+        listOf(Standard(), Radix(), UnrollWithWhen()).forEach { subject ->
             with(subject) {
                 verify().fizzbuzzOf(1).shouldEqual("1")
                 verify().fizzbuzzOf(2).shouldEqual("2")
