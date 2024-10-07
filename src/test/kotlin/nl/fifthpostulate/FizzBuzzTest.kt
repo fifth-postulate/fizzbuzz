@@ -6,11 +6,14 @@ import nl.fifthpostulate.radix.UnrollWithMap
 import nl.fifthpostulate.radix.UnrollWithWhen
 import nl.fifthpostulate.standard.Standard
 import org.junit.jupiter.api.BeforeEach
+import kotlin.random.Random
+import kotlin.random.nextInt
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
 class FizzBuzzTest {
     private lateinit var subjects: List<FizzBuzz>
+    private lateinit var standard: FizzBuzz
 
     @BeforeEach
     fun subjectsUnderTest() {
@@ -21,6 +24,11 @@ class FizzBuzzTest {
             UnrollWithMap(),
             CastingNines(),
             )
+    }
+
+    @BeforeEach
+    fun createStandard() {
+        standard = Standard()
     }
 
     @Test
@@ -37,20 +45,42 @@ class FizzBuzzTest {
             }
         }
     }
+
+    @Test
+    fun compare_fizzbuzz() {
+        subjects.forEach {subject ->
+            with(subject) {
+                verify().fizzbuzzAgrees().withOther(standard)
+            }
+        }
+    }
 }
 
 fun FizzBuzz.verify(): FizzBuzzTestCase =
     FizzBuzzTestCase(this)
 
-class FizzBuzzTestCase(val fizzbuzz: FizzBuzz) {
-    fun fizzbuzzOf(n : Int): FizzBuzzExpectation =
-        FizzBuzzExpectation(fizzbuzz, n)
+data class FizzBuzzTestCase(val fizzbuzz: FizzBuzz) {
+    fun fizzbuzzOf(n : Int): InstanceExpectation =
+        InstanceExpectation(fizzbuzz, n)
+
+    fun fizzbuzzAgrees() =
+        ComparisonExpectation(fizzbuzz)
 
 }
 
-class FizzBuzzExpectation(val fizzbuzz: FizzBuzz, val n : Int) {
+data class InstanceExpectation(val fizzbuzz: FizzBuzz, val n : Int) {
     fun shouldEqual(expected: String) {
         val actual = fizzbuzz.of(n)
-        assertEquals(actual, expected, "fizzbuzz.of($n) should equal \"$expected\", but was \"$actual\"")
+        assertEquals(actual, expected, "[${fizzbuzz::class.simpleName}]: fizzbuzz.of($n) should equal \"$expected\", but was \"$actual\"")
+    }
+}
+
+data class ComparisonExpectation(val fizzbuzz: FizzBuzz) {
+    fun withOther(standard: FizzBuzz) {
+        (1..100).map(Random::nextInt).forEach { n ->
+            val actual = fizzbuzz.of(n)
+            val expected = standard.of(n)
+            assertEquals(actual, expected, "[${fizzbuzz::class.simpleName}|${standard::class.simpleName}]: fizzbuzz.of($n) should agree with standard.of($n), but was (\"${actual}\"|\"${expected}\").")
+        }
     }
 }
