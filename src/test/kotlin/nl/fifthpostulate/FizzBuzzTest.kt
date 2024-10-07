@@ -1,16 +1,31 @@
 package nl.fifthpostulate
 
+import nl.fifthpostulate.castingnines.CastingNines
 import nl.fifthpostulate.radix.Radix
 import nl.fifthpostulate.radix.UnrollWithMap
 import nl.fifthpostulate.radix.UnrollWithWhen
 import nl.fifthpostulate.standard.Standard
+import org.junit.jupiter.api.BeforeEach
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
 class FizzBuzzTest {
+    private lateinit var subjects: List<FizzBuzz>
+
+    @BeforeEach
+    fun subjectsUnderTest() {
+        subjects = listOf(
+            Standard(),
+            Radix(),
+            UnrollWithWhen(),
+            UnrollWithMap(),
+            CastingNines(),
+            )
+    }
+
     @Test
     fun verify_fizzbuzz() {
-        listOf(Standard(), Radix(), UnrollWithWhen(), UnrollWithMap()).forEach { subject ->
+        subjects.forEach { subject ->
             with(subject) {
                 verify().fizzbuzzOf(1).shouldEqual("1")
                 verify().fizzbuzzOf(2).shouldEqual("2")
