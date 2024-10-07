@@ -4,6 +4,22 @@ This document list various ideas on tackling the implementation of FizzBuzz.
 Since some of these ideas are orthogonal, we can rely on a multiplication
 effect to increase the number of options
 
+## Language
+There are trivial syntactic changes that can be made to programs that make no
+semantic difference.
+
+For example, instead of using the idiomatic
+
+```kotlin
+data[n % 15] ?: n.toString()
+```
+
+to lookup a response, one could also make the `get` explicit
+
+```kotlin
+data.get(n % 15) ?: n.toString()
+```
+
 ## Divisibilty
 The essence of the FizzBuzz game is divisibility. There are various different
 ways to determine, what is effectively, the equivalence class of a certain

@@ -14,5 +14,5 @@ data class UnrollWithMap(val data: Map<Int, String>): FizzBuzz {
     ))
 
     override fun of(n: Int): String =
-        data.get(n % 15) ?: n.toString()
+        data[n % 15] ?: n.toString()
 }
