@@ -4,6 +4,7 @@ import nl.fifthpostulate.castingnines.CastingNines
 import nl.fifthpostulate.radix.Radix
 import nl.fifthpostulate.radix.UnrollWithMap
 import nl.fifthpostulate.radix.UnrollWithWhen
+import nl.fifthpostulate.random.RandomSeed
 import nl.fifthpostulate.standard.Standard
 import nl.fifthpostulate.statemachine.StateMachine
 import org.junit.jupiter.api.BeforeEach
@@ -24,6 +25,7 @@ class FizzBuzzTest {
             UnrollWithMap(),
             CastingNines(),
             StateMachine(),
+            RandomSeed(),
             )
     }
 
