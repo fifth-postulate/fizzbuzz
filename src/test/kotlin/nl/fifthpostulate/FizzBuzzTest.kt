@@ -1,6 +1,7 @@
 package nl.fifthpostulate
 
 import nl.fifthpostulate.castingnines.CastingNines
+import nl.fifthpostulate.lookup.Lookup
 import nl.fifthpostulate.radix.Radix
 import nl.fifthpostulate.radix.UnrollWithMap
 import nl.fifthpostulate.radix.UnrollWithWhen
@@ -26,6 +27,7 @@ class FizzBuzzTest {
             CastingNines(),
             StateMachine(),
             RandomSeed(),
+            Lookup(),
             )
     }
 
