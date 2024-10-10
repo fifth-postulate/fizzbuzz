@@ -11,21 +11,19 @@ data class RandomSeed(val seed: Int) : FizzBuzz {
 
     init {
         val rng = Random(seed)
-        val keys = listOf(0, 3, 5, 6, 9, 10, 12)
-        val values = List(keys.size) { rng.nextInt(0, 3) }
-            .map {
-                when(it) {
-                    0 -> "Fizz"
-                    1 -> "Buzz"
-                    else -> "FizzBuzz"
-                }
-            }
-        data = keys.zip(values).toMap()
+        data = listOf(0, 3, 5, 6, 9, 10, 12).associateWith { rng.nextFizzBuzz() }
     }
 
     override fun of(n: Int): String =
         data[n % 15] ?: n.toString()
 }
+
+fun Random.nextFizzBuzz(): String =
+    when (this.nextInt(0, 3)) {
+        0 -> "Fizz"
+        1 -> "Buzz"
+        else -> "FizzBuzz"
+    }
 
 fun main() {
     val reference: FizzBuzz = Standard()
