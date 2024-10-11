@@ -6,6 +6,7 @@ import nl.fifthpostulate.radix.Radix
 import nl.fifthpostulate.radix.UnrollWithMap
 import nl.fifthpostulate.radix.UnrollWithWhen
 import nl.fifthpostulate.random.RandomSeed
+import nl.fifthpostulate.rules.Engine
 import nl.fifthpostulate.standard.Standard
 import nl.fifthpostulate.statemachine.StateMachine
 import org.junit.jupiter.api.BeforeEach
@@ -28,6 +29,7 @@ class FizzBuzzTest {
             StateMachine(),
             RandomSeed(),
             Lookup(),
+            Engine(),
             )
     }
 
@@ -76,7 +78,7 @@ data class FizzBuzzTestCase(val fizzbuzz: FizzBuzz) {
 data class InstanceExpectation(val fizzbuzz: FizzBuzz, val n : Int) {
     fun shouldEqual(expected: String) {
         val actual = fizzbuzz.of(n)
-        assertEquals(actual, expected, "[${fizzbuzz::class.simpleName}]: fizzbuzz.of($n) should equal \"$expected\", but was \"$actual\"")
+        assertEquals(expected, actual, "[${fizzbuzz::class.simpleName}]: fizzbuzz.of($n) should equal \"$expected\", but was \"$actual\"")
     }
 }
 
@@ -85,7 +87,7 @@ data class ComparisonExpectation(val fizzbuzz: FizzBuzz) {
         (1..100).map(Random::nextInt).forEach { n ->
             val actual = fizzbuzz.of(n)
             val expected = standard.of(n)
-            assertEquals(actual, expected, "[${fizzbuzz::class.simpleName}|${standard::class.simpleName}]: fizzbuzz.of($n) should agree with standard.of($n), but was (\"${actual}\"|\"${expected}\").")
+            assertEquals(expected, actual, "[${fizzbuzz::class.simpleName}|${standard::class.simpleName}]: fizzbuzz.of($n) should agree with standard.of($n), but was (\"${actual}\"|\"${expected}\").")
         }
     }
 }
